@@ -1,1 +1,1 @@
-# terraform-demo-cloud-function
+# terraform-example-cloud-function
