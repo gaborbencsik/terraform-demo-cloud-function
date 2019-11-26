@@ -16,6 +16,12 @@ exports.main = async (req, res) => {
     }
   });
 
+  const jobResponse = await bigquery.createQueryJob({
+    destination: bigquery.dataset('terraform_demo_example_dataset').table('visits'),
+    query: queryString
+  }, function(err, job) {});
+
+  console.log(jobResponse);
   console.log(response);
 
   res.send('Hello Terraform!');
