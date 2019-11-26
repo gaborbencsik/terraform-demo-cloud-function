@@ -3,6 +3,8 @@ const bigquery = new BigQuery();
 
 exports.main = async (req, res) => {
 
+  console.log('Execution started...')
+
   const url = `${req.protocol}://${req.hostname}/${req.originalUrl}`;
   const dateTime = new Date().toISOString();
   const queryString = `INSERT \`terraform-demo-project-258413.terraform_demo_example_dataset.visits\` (url, timestamp) VALUES('${url}', '${dateTime}')`;
