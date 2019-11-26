@@ -10,11 +10,13 @@ exports.main = async (req, res) => {
   const queryString = `INSERT \`terraform-demo-project-258413.terraform_demo_example_dataset.visits\` (url, timestamp) VALUES('${url}', '${dateTime}')`;
   console.log(queryString)
 
-  await bigquery.query(queryString, {} , (err, rows) => {
+  const response = await bigquery.query(queryString, {} , (err, rows) => {
     if (!err) {
       console.error(err)
     }
   });
+
+  console.log(response);
 
   res.send('Hello Terraform!');
 };
