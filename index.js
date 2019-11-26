@@ -11,6 +11,7 @@ exports.main = async (req, res) => {
   console.log(queryString)
 
   const response = await bigquery.query(queryString, {} , (err, rows) => {
+    console.log(rows)
     if (!err) {
       console.error(err)
     }
@@ -19,10 +20,9 @@ exports.main = async (req, res) => {
   const jobResponse = await bigquery.createQueryJob({
     destination: bigquery.dataset('terraform_demo_example_dataset').table('visits'),
     query: queryString
-  }, function(err, job) {});
-
-  console.log(jobResponse);
-  console.log(response);
+  }, function(err, job) {
+    console.log(job)
+  });
 
   res.send('Hello Terraform!');
 };
