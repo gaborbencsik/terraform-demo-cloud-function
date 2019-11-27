@@ -10,19 +10,23 @@ exports.main = async (req, res) => {
   const queryString = `INSERT \`terraform-demo-project-258413.terraform_demo_example_dataset.visits\` (url, timestamp) VALUES('${url}', '${dateTime}')`;
   console.log(queryString)
 
-  const response = await bigquery.query(queryString, {} , (err, rows) => {
-    console.log(rows)
-    if (!err) {
-      console.error(err)
+  const options = {
+    query: query,
+    location: 'europe-west2',
+    projectId: 'terraform-demo-project-258413',
+    defaultDataset: {
+      "datasetId": 'terraform_demo_example_dataset',
+      "projectId": 'terraform-demo-project-258413'
     }
-  });
+  };
 
-  const jobResponse = await bigquery.createQueryJob({
-    destination: bigquery.dataset('terraform_demo_example_dataset').table('visits'),
-    query: queryString
-  }, function(err, job) {
-    console.log(job)
-  });
+  const [job] = await bigquery.createQueryJob(options);
+  console.log(`Job ${job.id} started.`);
+
+  const [rows] = await job.getQueryResults();
+
+  console.log('Rows:');
+  rows.forEach(row => console.log(row));
 
   res.send('Hello Terraform!');
 };
