@@ -1,7 +1,7 @@
 const { BigQuery } = require('@google-cloud/bigquery');
 const bigquery = new BigQuery();
 
-const insertToBigQuery = (req, res) => {
+const insertToBigQuery = async (req, res) => {
   console.log('Execution started...')
 
   const url = `${req.protocol}://${req.hostname}${req.originalUrl}`;
