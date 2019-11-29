@@ -1,8 +1,7 @@
 const { BigQuery } = require('@google-cloud/bigquery');
 const bigquery = new BigQuery();
 
-exports.main = async (req, res) => {
-
+const insertToBigQuery = (req, res) => {
   console.log('Execution started...')
 
   const url = `${req.protocol}://${req.hostname}${req.originalUrl}`;
@@ -27,6 +26,12 @@ exports.main = async (req, res) => {
 
   console.log('Rows:');
   rows.forEach(row => console.log(row));
+}
+
+exports.main = async (req, res) => {
+
+  // insertToBigQuery(req, res)
 
   res.send('Hello Terraform!');
+  
 };
