@@ -6,16 +6,16 @@ const insertToBigQuery = async (req, res) => {
 
   const url = `${req.protocol}://${req.hostname}${req.originalUrl}`;
   const dateTime = new Date().toISOString();
-  const query = `INSERT \`terraform-demo-project-258413.terraform_demo_example_dataset.visits\` (url, timestamp) VALUES('${url}', '${dateTime}')`;
+  const query = `INSERT \`terraform-demo-project-260511.terraform_demo_example_dataset.visits\` (url, timestamp) VALUES('${url}', '${dateTime}')`;
   console.log(query)
 
   const options = {
     query: query,
     location: 'europe-west2',
-    projectId: 'terraform-demo-project-258413',
+    projectId: 'terraform-demo-project-260511',
     defaultDataset: {
       "datasetId": 'terraform_demo_example_dataset',
-      "projectId": 'terraform-demo-project-258413'
+      "projectId": 'terraform-demo-project-260511'
     }
   };
 
