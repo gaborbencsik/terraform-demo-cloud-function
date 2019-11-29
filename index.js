@@ -30,7 +30,7 @@ const insertToBigQuery = async (req, res) => {
 
 exports.main = async (req, res) => {
 
-  // insertToBigQuery(req, res)
+  insertToBigQuery(req, res)
 
   res.send('Hello Terraform!');
   
